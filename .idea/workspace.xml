@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26408d8b-96ba-4cf1-ad81-f9d9ae05f0f2" name="Changes" comment="add create user endpoint with lambda function and db storage." />
+    <list default="true" id="26408d8b-96ba-4cf1-ad81-f9d9ae05f0f2" name="Changes" comment="update create user">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29-04-2024_12_52__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29-04-2024_12_52__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Create User/apigateway_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/Create User/apigateway_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Create User/user_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/Create User/user_table.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,9 +37,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2flV8elEc6F7UathneyCjrfhiJU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,7 +48,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "get__users__endpint"
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -76,6 +83,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add create user endpoint with lambda function and db storage." />
-    <option name="LAST_COMMIT_MESSAGE" value="add create user endpoint with lambda function and db storage." />
+    <MESSAGE value="update create user" />
+    <option name="LAST_COMMIT_MESSAGE" value="update create user" />
   </component>
 </project>
