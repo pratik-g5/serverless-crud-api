@@ -37,6 +37,8 @@ def validate_manager(manager_id):
     :param manager_id:
     :return:
     """
+    if manager_id is None:
+        return True
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('manager-table')
     response = table.get_item(Key={'manager_id': manager_id})
