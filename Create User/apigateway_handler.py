@@ -1,5 +1,5 @@
 import json
-from validation import validate_full_name, validate_mob_num, validate_pan_num
+from validation import validate_full_name, validate_mob_num, validate_pan_num, validate_manager
 from user_table import create_user_table
 from user import UserData
 
@@ -19,6 +19,13 @@ def lambda_handler(event, context):
     )
 
     user_data.generate_id()
+
+    manager_id = body.get('manager_id')
+    if not validate_manager(manager_id):
+        return {
+            'statusCode': 400,
+            'body': json.dumps({'error': 'Invalid manager_id'})
+        }
 
     if not (validate_full_name(user_data.full_name) and
             validate_mob_num(user_data.mob_num) and

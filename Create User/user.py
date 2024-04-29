@@ -11,6 +11,7 @@ class UserData:
     pan_num: str
     manager_id: str
     created_at: str = str(datetime.now())
+    last_updated: str = str(datetime.now())
     is_active: bool = True
 
     def generate_id(self):

@@ -1,4 +1,5 @@
 import re
+import boto3
 
 
 def validate_full_name(full_name):
@@ -28,3 +29,19 @@ def validate_pan_num(pan_num):
     :return:
     """
     return pan_num.isupper() and re.match(r'^[A-Z]{5}[0-9]{4}[A-Z]$', pan_num)
+
+
+def validate_manager(manager_id):
+    """
+    Validates if manager_id is present and active in the manager table
+    :param manager_id:
+    :return:
+    """
+    if manager_id is None:
+        return True
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('manager-table')
+    response = table.get_item(Key={'manager_id': manager_id})
+    if 'Item' not in response:
+        return False
+    return response['Item']['is_active']
