@@ -18,6 +18,7 @@ def create_user_table(user_data: UserData) -> str:
         'pan_num': user_data.pan_num,
         'manager_id': user_data.manager_id,
         'created_at': str(user_data.created_at),
+        'last_updated': str(user_data.last_updated),
         'is_active': user_data.is_active
     }
 
