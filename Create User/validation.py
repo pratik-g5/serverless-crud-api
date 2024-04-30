@@ -45,3 +45,24 @@ def validate_manager(manager_id):
     if 'Item' not in response:
         return False
     return response['Item']['is_active']
+
+
+def validate_user_info(user_data):
+    if not (validate_full_name(user_data.get('full_name', '')) and
+            validate_mob_num(user_data.get('mob_num', '')) and
+            validate_pan_num(user_data.get('pan_num', ''))):
+        return False
+    return True
+
+
+def update_user_info(user_info, update_data):
+    """
+    Update user information with the provided update data.
+
+    """
+    # Update user info with the provided update_data
+    for key, value in update_data.items():
+        if key in user_info:
+            user_info[key] = value
+
+    return user_info
