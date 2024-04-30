@@ -1,4 +1,6 @@
 import boto3
+from boto3.dynamodb.conditions import Attr
+
 from user import UserData
 
 
@@ -47,3 +49,15 @@ def get_user_info_by_user_id(user_id):
 
     user_info = response.get('Item')
     return user_info
+
+
+def get_users_by_manager_id(manager_id):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('user-table-v1')
+
+    response = table.scan(
+        FilterExpression=Attr('manager_id').eq(manager_id)
+    )
+
+    users = response['Items']
+    return users
