@@ -1,10 +1,10 @@
 import json
 from validation import validate_full_name, validate_mob_num, validate_pan_num, validate_manager
-from user_table import create_user_table
+from user_table import create_user_table, get_user_info_by_user_id, get_all_users_info, get_users_by_manager_id
 from user import UserData
 
 
-def lambda_handler(event, context):
+def handle_create_user(event, context):
     """
     handle create user
     """
@@ -40,4 +40,43 @@ def lambda_handler(event, context):
     return {
         'statusCode': 201,
         'body': json.dumps({'message': 'User created successfully', 'user_id': user_id})
+    }
+
+
+def handle_get_user(event, context):
+
+    path_params = event.get('pathParameters', {})
+    if path_params:
+        id = path_params.get('user_id')
+
+        if validate_manager(id):
+            users = get_users_by_manager_id(id)
+            if not users:
+                return {
+                    'statusCode': 404,
+                    'body': json.dumps({'error': 'No users found with the provided manager_id'})
+                }
+
+            return {
+                'statusCode': 200,
+                'body': json.dumps({'users': users})
+            }
+
+        user_info = get_user_info_by_user_id(id)
+
+        if not user_info:
+            return {
+                'statusCode': 404,
+                'body': json.dumps({'error': 'User with provided user_id does not exist'})
+            }
+        return {
+            'statusCode': 200,
+            'body': json.dumps({'user_info': user_info})
+        }
+
+    all_users_info = get_all_users_info()
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps({'all_users_info': all_users_info})
     }
