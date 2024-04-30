@@ -61,3 +61,35 @@ def get_users_by_manager_id(manager_id):
 
     users = response['Items']
     return users
+
+
+def delete_user_by_user_id(user_id):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('user-table-v1')
+
+    try:
+        table.delete_item(Key={'user_id': user_id})
+        return True
+    except Exception as e:
+        print(f"Error deleting user with user_id {user_id}: {e}")
+        return False
+
+
+def save_updated_user_info(updated_user_info):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('user-table-v1')
+
+    try:
+        table.update_item(
+            Key={'user_id': updated_user_info['user_id']},
+            UpdateExpression='SET full_name = :fn, mob_num = :mn, pan_num = :pn, manager_id = :mid, updated_at = :ua',
+            ExpressionAttributeValues={
+                ':fn': updated_user_info['full_name'],
+                ':mn': updated_user_info['mob_num'],
+                ':pn': updated_user_info['pan_num'],
+                ':mid': updated_user_info['manager_id'],
+                ':ua': updated_user_info['updated_at']
+            }
+        )
+    except Exception as e:
+        print(f"Error updating user info: {e}")
