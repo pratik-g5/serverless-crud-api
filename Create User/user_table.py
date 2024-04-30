@@ -61,3 +61,15 @@ def get_users_by_manager_id(manager_id):
 
     users = response['Items']
     return users
+
+
+def delete_user_by_user_id(user_id):
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('user-table-v1')
+
+    try:
+        table.delete_item(Key={'user_id': user_id})
+        return True
+    except Exception as e:
+        print(f"Error deleting user with user_id {user_id}: {e}")
+        return False
